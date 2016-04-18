@@ -1,4 +1,4 @@
-package assignment6;
+package Assignment6;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -19,12 +19,33 @@ class ThreadedTicketClient implements Runnable {
 	public void run() {
 		System.out.flush();
 		try {
+			
 			Socket echoSocket = new Socket(hostname, TicketServer.PORT);
 			PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
 			BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
 			BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 			//ticket checker here? not sure what flag to use
+			//System.out.println("Requesting ticket");
+			out.println("Seat Request");
+			
+			while(true){
+				if (in.ready()) {
+					String input = in.readLine();
+					if (!input.equals("go away")) {
+						System.out.println("Reserved Seat " + input + " for " + threadname);
+					} else {
+						System.out.println("No seat reserved for " + this.threadname);
+					}
+					
+					break;
+					
+				} else {
+					Thread.sleep(10);
+				}
+			}
+			System.out.println("closing Socket");
 			echoSocket.close();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
