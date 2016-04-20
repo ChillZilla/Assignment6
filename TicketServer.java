@@ -1,9 +1,6 @@
-package Assignment6;
+package assignment6;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -30,21 +27,7 @@ class ThreadedTicketServer implements Runnable {
 	String threadname = "X";
 	String testcase;
 	TicketClient sc;
-	Boolean[][] seats = new Boolean[26][28];
 	theater theaterSeats = new theater();
-	int numCustomers = 0;
-	int numSeats = 528;
-	
-	ThreadedTicketServer()
-	{
-		for(int i = 0; i < 26; i ++)
-		{
-			for (int j = 0; j < 28; j ++)
-			{
-				this.seats[i][j] = true;
-			}
-		}
-	}
 	
 	public void run() {
 		// TODO 422C
@@ -70,33 +53,5 @@ class ThreadedTicketServer implements Runnable {
 			e.printStackTrace();
 		}
 
-	}
-	
-	public int bestAvailableSeat()
-	{
-		for (int i = 0; i < 26; i++) //rows a through b. 
-		{
-			for (int j = 8; j < 21; j++) //checks middle
-				if (seats[i][j] == true)
-					return (i*100+j);
-			for (int j = 0; j < 8; j++) //checks side
-				if (seats[i][j] == true)
-					return (i*100+j);
-			for (int j = 21; j < 28; j++)  //checks other side.
-				if (seats[i][j] == true)
-					return (i*100+j);
-		}
-		return -1;
-	}
-	
-	public void markAvailableSeatTaken(int seat)
-	{
-		seats[seat/100][seat%100] = false;
-		numSeats-=1;
-	}
-	
-	public void printAvailableSeat(int seat)
-	{
-		System.out.println("Admit One to EE422C: Row " + (char)((seat/100) + 65) + ", Seat" + (seat%100 + 100));
 	}
 }

@@ -1,4 +1,4 @@
-package Assignment6;
+package assignment6;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -46,7 +46,7 @@ public class serverConnectionManager implements Runnable{
 					theaterSeat aSeat = bestAvailableSeat();
 					if(aSeat != null)
 					{
-						System.out.println(aSeat.taken);
+						//System.out.println(aSeat.taken);
 						out.println(aSeat.seatName);						
 						//mark the seat as taken
 						//output the seat to the console --- happens on the client end.
@@ -70,7 +70,7 @@ public class serverConnectionManager implements Runnable{
 		this.run();
 	}
 
-	synchronized public theaterSeat bestAvailableSeat()
+	public theaterSeat bestAvailableSeat()
 	{
 		//need to find the best available seat
 		//search the middle first
@@ -81,7 +81,7 @@ public class serverConnectionManager implements Runnable{
 			theaterSeat seat = this.Tseat.seating.get(rowSearch).get(search);
 			if(seat.taken == false)
 			{
-				System.out.println(seat.taken);
+				//System.out.println(seat.taken);
 				seat.taken = true;
 				return seat;
 			}
@@ -91,7 +91,7 @@ public class serverConnectionManager implements Runnable{
 			theaterSeat seat = this.Tseat.seating.get(rowSearch).get(search);
 			if(seat.taken == false)
 			{
-				System.out.println(seat.taken);
+				//System.out.println(seat.taken);
 				seat.taken = true;
 				return seat;
 			}
@@ -102,7 +102,7 @@ public class serverConnectionManager implements Runnable{
 			theaterSeat seat = this.Tseat.seating.get(rowSearch).get(search);
 			if (seat.taken == false)
 			{
-				System.out.println(seat.taken);
+				//System.out.println(seat.taken);
 				seat.taken = true;
 				return seat;
 			}

@@ -1,4 +1,4 @@
-package Assignment6;
+package assignment6;
 
 public class theaterSeat {//capitalize this plz ty
 
